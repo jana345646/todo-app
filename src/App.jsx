@@ -9,7 +9,7 @@ function App() {
       <div className="w-[53.6%] h-screen flex flex-col items-center mx-auto">
         <Header />
         <Tasks />
-        <PopUp />
+        {/* <PopUp /> */}
       </div>
     </>
   );
