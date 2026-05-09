@@ -1,7 +1,10 @@
-function Tasks({ setIsOpen, search }) {
+import { useState } from "react";
+import { FaCheck } from "react-icons/fa";
+
+function Tasks({ setIsOpen, toggleTask, filteredTasks }) {
   return (
     <>
-      {search.length === 0 ? (
+      {filteredTasks.length === 0 ? (
         <div className="w-full mt-[1rem] flex flex-col items-center">
           <div className="w-[69.3] flex flex-col items-center">
             <img
@@ -9,8 +12,7 @@ function Tasks({ setIsOpen, search }) {
               className="w-[13.8rem] h-[10.8rem]"
               alt="empty"
             />
-            import {useState} from "react"; import {FaCheck} from
-            "react-icons/fa";
+
             <p className="pt-[1.2rem] font-[Kanit] font-normal text-xl leading-none capitalize">
               Empty...
             </p>
@@ -18,13 +20,15 @@ function Tasks({ setIsOpen, search }) {
         </div>
       ) : (
         <div className="w-full h-[80.9%] pt-[1.5rem] flex flex-col items-center gap-[1rem] overflow-y-auto">
-          {search.map((task, index) => (
+          {filteredTasks.map((task, index) => (
             <div key={index} className="flex flex-col items-center gap-[1rem]">
               <div className="flex justify-between w-[32.8rem]">
                 <div className="flex items-center gap-4">
                   <label className="relative w-[1.4rem] h-[1.4rem] flex items-center justify-center cursor-pointer">
                     <input
                       type="checkbox"
+                      checked={task.check}
+                      onChange={() => toggleTask(task.title)}
                       className="w-full h-full rounded-xs border-[0.06rem] border-[#6C63FF] peer appearance-none checked:bg-[#6C63FF] checked:border-[#6C63FF]"
                     />
                     <span className="absolute flex items-center justify-center text-white opacity-0 peer-checked:opacity-100">

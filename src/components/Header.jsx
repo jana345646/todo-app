@@ -1,4 +1,4 @@
-function Header({ input, setInputValue }) {
+function Header({ input, setInputValue, setFilteredMenue, FMenue }) {
   return (
     <div className="w-full  pt-[2.5rem] flex flex-col gap-[1.125rem] items-center">
       <p className="font-[Kanit] font-medium text-[1.6rem] leading-none text-center">
@@ -21,12 +21,14 @@ function Header({ input, setInputValue }) {
           />
         </div>
         <select
+          value={FMenue}
+          onChange={(e) => setFilteredMenue(e.target.value)}
           className="w-[15%]  rounded-[0.3rem] bg-[#6C63FF] font-[Kanit] font-medium text-sm
         leading-none uppercase text-[#F7F7F7] px-1 focus:outline-none"
         >
-          <option>ALL</option>
-          <option>Complete</option>
-          <option>Incomplete</option>
+          <option value={"All"}>ALL</option>
+          <option value={"Complete"}>Complete</option>
+          <option value={"InComplete"}>Incomplete</option>
         </select>
 
         <button className="w-[3rem] h-[3rem]  rounded-[0.3rem] bg-[#6C63FF] flex justify-center items-center">
