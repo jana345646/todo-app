@@ -1,5 +1,3 @@
-import { FaCheck } from "react-icons/fa";
-
 function Tasks({ setIsOpen, search }) {
   return (
     <>
@@ -11,6 +9,8 @@ function Tasks({ setIsOpen, search }) {
               className="w-[13.8rem] h-[10.8rem]"
               alt="empty"
             />
+            import {useState} from "react"; import {FaCheck} from
+            "react-icons/fa";
             <p className="pt-[1.2rem] font-[Kanit] font-normal text-xl leading-none capitalize">
               Empty...
             </p>

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import PopUp from "./components/PopUp";
+import Header from "./components/Header";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState("");
@@ -38,11 +38,10 @@ function App() {
           setIsOpen={setIsOpen}
           addTasks={addTasks}
         />
+        <Header />
       </div>
     </>
   );
 }
-
-export default App;
 //mx-auto: it menas margin left and margin right auto so it center the main container
 //items-center:it centers the children in the container
