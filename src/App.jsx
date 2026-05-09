@@ -4,12 +4,27 @@ import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import PopUp from "./components/PopUp";
 function App() {
+  const [tasks, setTasks] = useState([]);
+  const [task, setTask] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  function addTasks(task) {
+    setTasks([...tasks, task]);
+    setTask("");
+  }
+
   return (
     <>
       <div className="w-[53.6%] h-screen flex flex-col items-center mx-auto">
         <Header />
-        <Tasks />
-        {/* <PopUp /> */}
+        <Tasks task={task} setIsOpen={setIsOpen} tasks={tasks} />
+        <PopUp
+          task={task}
+          setTask={setTask}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          addTasks={addTasks}
+        />
       </div>
     </>
   );
