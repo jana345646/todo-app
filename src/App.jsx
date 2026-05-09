@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import Tasks from "./components/Tasks";
 import PopUp from "./components/PopUp";
 import Header from "./components/Header";
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState("");
@@ -10,11 +12,13 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [checked, setChecked] = useState(false);
   const [filteredMenue, setFilteredMenue] = useState("All");
-
+  const [editId, setEditId] = useState(null); //we use to can diplay the input ei the edit mood only
+  const [editText, setEditText] = useState(""); // this to save the edited text
   function addTasks(task) {
     setTasks([
       ...tasks,
       {
+        id: Date.now(),
         title: task,
         check: checked,
       },
@@ -53,9 +57,28 @@ function App() {
     );
   }
 
+  function startEdit(task) {
+    setEditId(task.id);
+    setEditText(task.title);
+  }
+
+  function saveEdit() {
+    setTasks(
+      tasks.map((task) =>
+        task.id === editId ? { ...task, title: editText } : task,
+      ),
+    );
+
+    setEditId(null);
+    setEditText("");
+  }
+
+  const deletedTask = (taskId) => {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+  };
   return (
     <>
-      <div className="w-[53.6%] h-screen flex flex-col items-center mx-auto">
+      <div className="w-[53.6%] h-screen flex flex-col items-center mx-auto ">
         <Header
           inputValue={inputValue}
           setInputValue={setInputValue}
@@ -70,6 +93,12 @@ function App() {
           // selected={selected}
           toggleTask={toggleTask}
           filteredTasks={filteredTasks}
+          deletedTask={deletedTask}
+          startEdit={startEdit}
+          saveEdit={saveEdit}
+          editId={editId}
+          editText={editText}
+          setEditText={setEditText}
         />
         <PopUp
           task={task}
