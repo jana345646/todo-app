@@ -14,6 +14,13 @@ function App() {
   const [filteredMenue, setFilteredMenue] = useState("All");
   const [editId, setEditId] = useState(null); //we use to can diplay the input ei the edit mood only
   const [editText, setEditText] = useState(""); // this to save the edited text
+  const [dark, setDark] = useState(false); // we create a state for darkmode to save if it is true or false and when its value changes
+
+  useEffect(() => {
+    //useeEfect as it is not releated to the ui , it render after the ui
+    document.documentElement.classList.toggle("dark", dark); //it catches the html element and add a class named dark to it if it is true and if it is false it didn't add it
+  }, [dark]);
+
   function addTasks(task) {
     setTasks([
       ...tasks,
@@ -78,35 +85,40 @@ function App() {
   };
   return (
     <>
-      <div className="w-[53.6%] h-screen flex flex-col items-center mx-auto ">
-        <Header
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-          setFilteredMenue={setFilteredMenue}
-          filteredMenue={filteredMenue}
-        />
-        <Tasks
-          task={task}
-          setIsOpen={setIsOpen}
-          tasks={tasks}
-          // search={search}
-          // selected={selected}
-          toggleTask={toggleTask}
-          filteredTasks={filteredTasks}
-          deletedTask={deletedTask}
-          startEdit={startEdit}
-          saveEdit={saveEdit}
-          editId={editId}
-          editText={editText}
-          setEditText={setEditText}
-        />
-        <PopUp
-          task={task}
-          setTask={setTask}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          addTasks={addTasks}
-        />
+      <div className="w-full dark:bg-[#252525]">
+        <div className="w-[53.6%] h-screen flex flex-col items-center mx-auto ">
+          <Header
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            setFilteredMenue={setFilteredMenue}
+            filteredMenue={filteredMenue}
+            setDark={setDark}
+            dark={dark}
+          />
+          <Tasks
+            task={task}
+            setIsOpen={setIsOpen}
+            tasks={tasks}
+            // search={search}
+            // selected={selected}
+            toggleTask={toggleTask}
+            filteredTasks={filteredTasks}
+            deletedTask={deletedTask}
+            startEdit={startEdit}
+            saveEdit={saveEdit}
+            editId={editId}
+            editText={editText}
+            setEditText={setEditText}
+            dark={dark}
+          />
+          <PopUp
+            task={task}
+            setTask={setTask}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            addTasks={addTasks}
+          />
+        </div>
       </div>
     </>
   );

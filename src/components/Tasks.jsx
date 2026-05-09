@@ -11,19 +11,28 @@ function Tasks({
   editId,
   editText,
   setEditText,
+  dark,
 }) {
   return (
     <>
       {filteredTasks.length === 0 ? (
         <div className="w-full mt-[1rem] flex flex-col items-center">
           <div className="w-[69.3] flex flex-col items-center">
-            <img
-              src="detective.png"
-              className="w-[13.8rem] h-[10.8rem]"
-              alt="empty"
-            />
+            {dark ? (
+              <img
+                src="detective-dark.png"
+                className="w-[13.8rem] h-[10.8rem]"
+                alt="empty"
+              />
+            ) : (
+              <img
+                src="detective.png"
+                className="w-[13.8rem] h-[10.8rem]"
+                alt="empty"
+              />
+            )}
 
-            <p className="pt-[1.2rem] font-[Kanit] font-normal text-xl leading-none capitalize">
+            <p className="pt-[1.2rem] font-[Kanit] font-normal text-xl leading-none capitalize dark:text-white">
               Empty...
             </p>
           </div>
@@ -31,7 +40,10 @@ function Tasks({
       ) : (
         <div className="w-full h-[80.9%] pt-[1.5rem] flex flex-col items-center gap-[1rem] overflow-y-auto">
           {filteredTasks.map((task, index) => (
-            <div key={index} className="flex flex-col items-center gap-[1rem]">
+            <div
+              key={index}
+              className="flex flex-col items-center gap-[1rem] dark:text-white"
+            >
               <div className="flex justify-between items-center w-[32.8rem]">
                 <div className="flex items-center gap-4 flex-1">
                   <label className="relative w-[1.4rem] h-[1.4rem] flex items-center justify-center cursor-pointer">
@@ -50,7 +62,7 @@ function Tasks({
                     <input
                       value={editText}
                       onChange={(e) => setEditText(e.target.value)}
-                      className="font-[Kanit] text-lg border border-[#6C63FF] px-2 rounded mx-auto block"
+                      className="font-[Kanit] text-lg border border-[#6C63FF] px-2 rounded mx-auto block outline-none dark:border-white"
                     />
                   ) : (
                     <div className="font-[Kanit] text-lg">{task.title}</div>
@@ -61,7 +73,7 @@ function Tasks({
                   {editId === task.id && (
                     <button
                       onClick={saveEdit}
-                      className="text-[#6C63FF] text-lg font-[Kanit]"
+                      className="text-[#6C63FF] text-lg font-[Kanit] dark:text-white"
                     >
                       Save
                     </button>

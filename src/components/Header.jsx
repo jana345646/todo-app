@@ -1,7 +1,14 @@
-function Header({ input, setInputValue, setFilteredMenue, FMenue }) {
+function Header({
+  input,
+  setInputValue,
+  setFilteredMenue,
+  FMenue,
+  setDark,
+  dark,
+}) {
   return (
     <div className="w-full  pt-[2.5rem] flex flex-col gap-[1.125rem] items-center">
-      <p className="font-[Kanit] font-medium text-[1.6rem] leading-none text-center">
+      <p className="font-[Kanit] font-medium text-[1.6rem] leading-none text-center dark:text-white">
         TODO LIST
       </p>
 
@@ -13,12 +20,20 @@ function Header({ input, setInputValue, setFilteredMenue, FMenue }) {
             type="text"
             placeholder="Search note..."
             className="w-full h-full rounded-[0.3rem] border-[0.06rem] border-[#6C63FF] py-[0.5rem] px-[1rem]
-          font-[Inter] font-medium text-[1rem] leading-none text-[#C3C1E5] focus:outline-none"
+          font-[Inter] font-medium text-[1rem] leading-none text-[#C3C1E5] focus:outline-none dark:border-white 
+          dark:text-[#666666]"
           />
-          <img
-            src="search.png"
-            className="w-[1rem] h-[1rem] absolute right-3 top-1/2 -translate-y-1/2"
-          />
+          {dark ? (
+            <img
+              src="search-dark.png"
+              className="w-[1rem] h-[1rem] absolute right-3 top-1/2 -translate-y-1/2"
+            />
+          ) : (
+            <img
+              src="search.png"
+              className="w-[1rem] h-[1rem] absolute right-3 top-1/2 -translate-y-1/2"
+            />
+          )}
         </div>
         <select
           value={FMenue}
@@ -31,8 +46,15 @@ function Header({ input, setInputValue, setFilteredMenue, FMenue }) {
           <option value={"InComplete"}>Incomplete</option>
         </select>
 
-        <button className="w-[3rem] h-[3rem]  rounded-[0.3rem] bg-[#6C63FF] flex justify-center items-center">
-          <img src="moon.png" className="w-[1.3rem] h-[1.3rem]" />
+        <button
+          onClick={() => setDark(!dark)}
+          className="w-[3rem] h-[3rem]  rounded-[0.3rem] bg-[#6C63FF] flex justify-center items-center"
+        >
+          {dark ? (
+            <img src="sun.png" className="w-[1.3rem] h-[1.3rem]" />
+          ) : (
+            <img src="moon.png" className="w-[1.3rem] h-[1.3rem]" />
+          )}
         </button>
       </div>
     </div>
