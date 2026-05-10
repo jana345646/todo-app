@@ -6,7 +6,11 @@ import PopUp from "./components/PopUp";
 import Header from "./components/Header";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    // this is a lazy initilization so it will be rendered one time during the first render and will not be rendered duing the other re-renderes
+    const saved = localStorage.getItem("tasks"); //this command get the data from the l.s and it is saved under the tasks
+    return saved ? JSON.parse(saved) : []; // l.s save only strings , so we use j.parse to convert it back to an array
+  });
   const [task, setTask] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -14,11 +18,23 @@ function App() {
   const [filteredMenue, setFilteredMenue] = useState("All");
   const [editId, setEditId] = useState(null); //we use to can diplay the input ei the edit mood only
   const [editText, setEditText] = useState(""); // this to save the edited text
-  const [dark, setDark] = useState(false); // we create a state for darkmode to save if it is true or false and when its value changes
-
+  const [dark, setDark] = useState(() => {
+    const savedTheme = localStorage.getItem("dark");
+    return savedTheme === "true"; // this is a comparison if the savedtheme is true it returns true , else it returns false
+  });
+  //we use json.stringfy with arrays and objects
   useEffect(() => {
     //useeEfect as it is not releated to the ui , it render after the ui
     document.documentElement.classList.toggle("dark", dark); //it catches the html element and add a class named dark to it if it is true and if it is false it didn't add it
+  }, [dark]);
+
+  useEffect(() => {
+    // it will run when we edit on the tasks
+    localStorage.setItem("tasks", JSON.stringify(tasks)); //j.stringfy it converts the array to a string as l.s store only strings
+  }, [tasks]);
+
+  useEffect(() => {
+    localStorage.setItem("dark", dark);
   }, [dark]);
 
   function addTasks(task) {
