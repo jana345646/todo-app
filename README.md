@@ -1,18 +1,77 @@
-# React + Vite
+# Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple Todo List application built with React and JavaScript.  
+The app helps users organize and manage their daily tasks with useful features like searching, filtering, and dark mode.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Add new tasks
+- Edit tasks
+- Delete tasks
+- Real-time search
+- Filter tasks
+- Dark mode
+- Storing data using Local Storage
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React
+- JavaScript
+- Tailwind CSS
+- Local Storage 
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone <https://github.com/jana345646/todo-app.git>
+```
+
+Navigate to the project folder:
+
+```bash
+cd todo-app
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+---
+
+## What I Learned
+
+Through this project, I practiced:
+
+- React Components
+- useState Hook
+- useEffect Hook
+- Local Storage
+- Search & Filter Logic
+- Dark Mode Implementation
+
+---
+
+## Future Improvements
+
+- Responsive design
+- Task completion status
+- Due dates for tasks
+- Backend integration
+
+---
